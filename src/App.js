@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { Habits } from './components/Habits';
+import './components/Habits.css';
 function App() {
   return (
+    <div className='container'>
     <div className="App">
-      <header className="App-header">
-        <h1>ammar</h1>
-        <p>I like cookies:)</p>
-        <h2>kingggg kaka</h2>
-      </header>
+      
+    <Habits/>
+    
+    </div>
     </div>
   );
 }

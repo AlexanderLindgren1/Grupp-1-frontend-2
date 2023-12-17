@@ -1,0 +1,18 @@
+
+    
+      
+      .container {
+        width: 100%; /* Set the container width as needed */
+      
+        background-color: aquamarine;
+        height: 100px;
+      }
+      
+      .item {
+    
+        width: 50%; /* Ensures the item takes up 100% width within the container */
+        background-color: #ff6347; /* Set a background color for the item (tomato) */
+     
+        height: 50%; /* Set the height for the item */
+      }
+      
