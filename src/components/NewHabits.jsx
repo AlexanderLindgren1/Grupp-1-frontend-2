@@ -1,32 +1,54 @@
+import { useState } from "react"
+
 export function NewHabits(props) {
-    let list = []
 
+    let [master, setmaster] = useState([])
 
+    let clonemaster = [...master]
 
-
-    function submit() {
-        
+    function submit(params) {
         const title = document.getElementById("title").value
-        const streak = document.getElementById("streak").value
-
+        const streaks = document.getElementById("streaks").value
         let object = {
-            title: { title },
-            givenumber: streak,
+            title: title,
+            streaks: streaks
         }
 
 
-       return list.push(object)
+        clonemaster.push(object)
 
-  
+        console.log(clonemaster);
+        setmaster(clonemaster)
+        master.map((tt) => { console.log(tt); })
+
+
+    }
+
+    let ranking = () => {
 
     }
 
 
-    console.log(list);
-    return <><input type="text" id="title" /> <input type="number" id="streak" /> <button onClick={() =>  submit() }>submit</button>
-    
-    <br />
-    <ul>  {list && list.map((habit) =>{console.log(habit); return <li> {habit.title} </li>})} </ul>
-    </>
+    return (
+        <>
+           <input type="text" id="title" />
+            <input type="number" id="streaks" />
+            <button onClick={() => submit()}>submit</button>
+
+            {master.map((tt, index) => { return <><p key={index}>title: {tt.title} streaks: {tt.streaks} </p> 
+          
+            <input type="radio" id="low" value={"low"} name="Prioritet " />
+            <label for="low">low</label>
+
+            <input type="radio" id="medium" value={"medium"} name="Prioritet " />
+            <label for="medium">medium</label>
+
+            <input type="radio" id="heigest" value={"heigest"} name="Prioritet " />
+            <label for="heigest">heigest</label>
+        </>
+        })}
+
+
+        </>)
 
 }
