@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Habits } from './Habits';
 import { Friends } from './Friends';
+import { Tasks } from './Tasks';
 
 const Home = () => {
     const topPrioritizedHabits = [
@@ -43,7 +44,7 @@ const Home = () => {
                     <li key={task.id}>{task.title} - Created at: {task.createdAt.toLocaleString()}</li>
                 ))}
             </ul>
-            <Link to="/tasks">Se fler</Link>
+            <Link to="/Tasks">Se fler</Link>
 
             <h1>Latest 5 Friends</h1>
             <ul>
