@@ -1,14 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import { NewHabits } from './components/NewHabits';
+import { Habits } from './components/Habits';
+import './components/Habits.css';
+
 function App() {
   return (
- 
-    <div className="App">
-    
-    
 
-    </div>
+    <div className="App">
+
+
+    <Habits/>
+    </div >
   );
 }
 
