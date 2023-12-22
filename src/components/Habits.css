@@ -6,13 +6,19 @@
       
         background-color: aquamarine;
         height: 100px;
+        width: 400px;
+        display: grid;
+        
+        position: relative;
       }
       
       .item {
-    
-        width: 50%; /* Ensures the item takes up 100% width within the container */
-        background-color: #ff6347; /* Set a background color for the item (tomato) */
-     
-        height: 50%; /* Set the height for the item */
+    position: relative;
+
+        background-color: #972a6d; /* Set a background color for the item (tomato) */
+color: wheat;
+      padding: 10px;
+      margin: 10px;
+    justify-content: center;
       }
       
