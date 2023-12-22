@@ -2,66 +2,60 @@ import { useState } from "react"
 
 export function NewHabits(props) {
 
-    let [habitList, setHabitList] = useState([])
-    let [moveobject, setMoveObject] = useState()
-    let index = 0
 
-    let clonemaster = [...habitList]
-
-    function addHabit(params) {
-        const title = document.getElementById("title").value
-        const streaks = document.getElementById("streaks").value
+    let addOneToStreak = (index) => {
 
 
-        console.log(props.data);
-        let object = {
-            title: title,
-            streaks: props.data && props.data
-        }
-
-        clonemaster.push(object)
-        setHabitList(clonemaster)
-        console.log(habitList[0]);
-        if (habitList[1]) {
-            habitList[1].streaks = "Alexander"
-        }
-
-
-
-
-    }
- 
-    function clx(dxx, index) {
-        console.log(index);
-        return habitList[index].streaks = props.data
-
-
-
+        props.updatehabit(index)
     }
 
+    return <div>
 
-    return (
-        <div >
-            <input type="text" id="title" />
-            <input type="number" id="streaks" />
-            <button onClick={() => addHabit()}>submit</button>
-       
 
-            {habitList.map((tt, index) => {
-                return <div key={index} className="item"><p>title: {tt.title} streaks: {tt.streaks}  <button onClick={() => clx(tt, index)}>clx </button></p>
 
-                    <input type="radio" id={"low" + index} value={"low"} name={"Prioritet "+ index} />
-                    <label for={"low"+ index}>low</label>
+        <h3>new habits</h3>
+        <input type="text" placeholder="Title" id="habit" />
+        <input type="number" placeholder="streaks" id="startstreaks" />
+        <button onClick={() => {
 
-                    <input type="radio" id={"medium"+ index} value={"medium"} name={"Prioritet "+ index} />
-                    <label for={"medium"+ index}>medium</label>
 
-                    <input type="radio" id={"heigest"+ index} value={"heigest" } name={"Prioritet "+ index} />
-                    <label for={"heigest"+ index}>heigest</label>
+            let inputhabit = document.getElementById("habit").value
+            let inputstreaks = parseInt(document.getElementById("startstreaks").value)
+            if (!inputhabit == "" && !inputstreaks == "") {
+                let newhabit = {
+                    Title: inputhabit,
+                    streak: inputstreaks
+                }
+                console.log(newhabit);
+                props.addhabits(newhabit)
+            }
+            else {
+                alert("You most write something in the title and add number on streaks");
+            }
+
+
+            
+
+        }}>add habit</button>
+        <div className="Container">
+
+
+            {props.habits && props.habits.map((habit, index) => {
+                return <div className="item" key={index} id={index} onClick={() => addOneToStreak(index)}><p >{habit.Title}</p>
+                    <p>Streaks: {habit.streak}</p>
+
+                    <div className="procolactor"></div>
+                   
+
+                    <select  id={"Prioritet "+ index} onChange={()=>props.rankingHighToLow()}> 
+                        <option value={"heigest" }>heigest</option>
+                        <option value={"medium" } >medium</option>
+                        <option value={"low" } >low</option>
+                    </select>
                 </div>
+               
             })}
+        </div>
 
-
-        </div>)
-
+    </div>
 }
