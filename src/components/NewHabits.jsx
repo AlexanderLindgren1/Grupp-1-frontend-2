@@ -1,61 +1,79 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export function NewHabits(props) {
+  let [moveData, setMoveData] = useState([{ name: "High", number: 3 }]);
 
+  let addOneToStreak = (index) => {
+    props.updatehabit(index);
+  };
 
-    let addOneToStreak = (index) => {
+  return (
+    <div>
+      <h3>new habits</h3>
+      <input type="text" placeholder="Title" id="habit" />
+      <input type="number" placeholder="streaks" id="startstreaks" />
+      <select name="" id="prioritizeHabit">
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
 
+      <button
+        onClick={() => {
+          let inputhabit = document.getElementById("habit").value;
+          let inputstreaks = parseInt(
+            document.getElementById("startstreaks").value
+          );
 
-        props.updatehabit(index)
-    }
+          let prioritizeHabit =
+            document.getElementById("prioritizeHabit").value;
 
-    return <div>
-
-
-
-        <h3>new habits</h3>
-        <input type="text" placeholder="Title" id="habit" />
-        <input type="number" placeholder="streaks" id="startstreaks" />
-        <button onClick={() => {
-
-
-            let inputhabit = document.getElementById("habit").value
-            let inputstreaks = parseInt(document.getElementById("startstreaks").value)
-            if (!inputhabit == "" && !inputstreaks == "") {
-                let newhabit = {
-                    Title: inputhabit,
-                    streak: inputstreaks
-                }
-                console.log(newhabit);
-                props.addhabits(newhabit)
+          let addNumberOnProtize = (x) => {
+            let numberObject;
+            if (x === "High") {
+              numberObject = { name: x, number: 3 };
+          
+            } else if (x === "Medium") {
+              numberObject = { name: x, number: 2 };
+            } else if (x === "Low") {
+              numberObject = { name: x, number: 1 };
             }
-            else {
-                alert("You most write something in the title and add number on streaks");
-            }
+            return numberObject;
+          };
 
+          if (!inputhabit == "" && !inputstreaks == "") {
+            let newhabit = {
+              title: inputhabit,
+              streak: inputstreaks,
+              Priority: addNumberOnProtize(prioritizeHabit),
+            };
 
-            
-
-        }}>add habit</button>
-        <div className="Container">
-
-
-            {props.habits && props.habits.map((habit, index) => {
-                return <div className="item" key={index} id={index} onClick={() => addOneToStreak(index)}><p >{habit.Title}</p>
-                    <p>Streaks: {habit.streak}</p>
-
-                    <div className="procolactor"></div>
-                   
-
-                    <select  id={"Prioritet "+ index} onChange={()=>props.rankingHighToLow()}> 
-                        <option value={"heigest" }>heigest</option>
-                        <option value={"medium" } >medium</option>
-                        <option value={"low" } >low</option>
-                    </select>
-                </div>
-               
-            })}
-        </div>
-
+            props.addhabits(newhabit);
+          } else {
+            alert(
+              "You most write something in the title and add number on streaks"
+            );
+          }
+        }}>
+        add habit
+      </button>
+      <div className="Container">
+        {props.habits &&
+          props.habits.map((habit, index) => {
+           
+            return (
+              <div
+                className="item"
+                key={index}
+                id={index}
+                onClick={() => addOneToStreak(index)}>
+                <p>{habit.title}</p>
+                <p>Streaks: {habit.streak}</p>
+                <p> prioritized: {habit.Priority.name}</p>
+              </div>
+            );
+          })}
+      </div>
     </div>
+  );
 }
