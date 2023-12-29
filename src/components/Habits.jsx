@@ -97,7 +97,7 @@ export function Habits(props) {
 
         <option value="lowest">lowest to highest</option>
       </select>
-
+      <label for="filter">filter Priority</label>
       <select
         name=""
         id="filter"
@@ -110,6 +110,7 @@ export function Habits(props) {
 
         <option value="Low">Low</option>
       </select>
+      <label for="checkboxfilter">trigger filter habits</label>
       <input
         type="checkbox"
         id="checkboxfilter"
