@@ -1,24 +1,24 @@
 
-    
-      
-      .container {
-        width: 100%; /* Set the container width as needed */
-      
-        background-color: aquamarine;
-        height: 100px;
-        width: 400px;
-        display: grid;
-        
-        position: relative;
-      }
-      
-      .item {
-    position: relative;
+body{
 
-        background-color: #972a6d; /* Set a background color for the item (tomato) */
-color: wheat;
-      padding: 10px;
-      margin: 10px;
-    justify-content: center;
-      }
-      
+  display: flex;
+  justify-content: center;
+
+}
+.Container{
+  display: -moz-grid-group;
+  overflow-y: scroll;
+
+  width: auto;
+ height: 300px;
+
+}
+.item{
+  margin: 5px;
+display: flex;
+justify-content: space-evenly;
+width: auto;
+border: 1px solid black;
+height: 20%;
+margin: 0px 0px 10px 0px;
+}
