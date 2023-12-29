@@ -48,6 +48,31 @@ export function NewHabits(props) {
               Priority: addNumberOnProtize(prioritizeHabit),
             };
 
+<<<<<<< HEAD
+            
+
+        }}>add habit</button>
+        <div className="Container">
+
+
+            {props.habits && props.habits.map((habit, index) => {
+                return <div className="item" key={index} id={index} onClick={() => addOneToStreak(index)}><p >{habit.Title}</p>
+                    <p>Streaks: {habit.streak}</p>
+
+                    <div className="procolactor"></div>
+                   
+
+                    <select  id={"Prioritet "+ index} onChange={()=>props.rankingHighToLow}> 
+                        <option value={"heigest" }>heigest</option>
+                        <option value={"medium" } >medium</option>
+                        <option value={"low" } >low</option>
+                    </select>
+                </div>
+               
+            })}
+        </div>
+
+=======
             props.addhabits(newhabit);
           } else {
             alert(
@@ -58,6 +83,7 @@ export function NewHabits(props) {
         add habit
       </button>
      
+>>>>>>> a94f95e4200ebb81f2c036cf99297f4d671000bc
     </div>
   );
 }

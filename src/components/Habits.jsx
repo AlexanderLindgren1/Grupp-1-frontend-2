@@ -13,6 +13,8 @@ export function Habits(props) {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
 
+  
+
   function addhabits(objects) {
     let updatedHabits = [...habits];
     updatedHabits.push(objects);
