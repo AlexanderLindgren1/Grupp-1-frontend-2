@@ -57,6 +57,8 @@ const Home = () => {
                         <li key={friend.id}>{friend.name} - Added at: {friend.createdAt.toLocaleString()}</li>
                     ))}
                 </ul>
+
+                
                 <Link to="/friends">Se fler</Link>
             </div>
             <Friends />
