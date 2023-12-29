@@ -3,11 +3,15 @@ import { NewHabits } from "./NewHabits";
 
 export function Habits(props) {
   let [changer, setchanger] = useState("adduktion");
-
+  let addOneToStreak = (index) => {
+    updatehabit(index);
+  };
   let [habits, setHabits] = useState([
     // here is the save habits and transport it
-    { title: "test", streak: 11, Priority: { name: "High", number: 3 } },
+    {title:"kaka",streak: 1, Priority: {name:"Low", number: 1}}
   ]);
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+
 
   function addhabits(objects) {
     let updatedHabits = [...habits];
@@ -32,27 +36,13 @@ export function Habits(props) {
 
   let handleRankingSystem = (event) => {
     console.log("handle suff");
-    // here will it filter and sort habits
+    // here will sort habits
     let sortingStreakSelector = document.getElementById(
       "sortingStreakSelector"
     ).value;
     let sortingPrioritySelector = document.getElementById(
       "sortingPrioritySelector"
     ).value;
-    let checkboxfilter = document.getElementById("checkboxfilter");
-      console.log(checkboxfilter.checked)
-    let filter = document.getElementById("filter").value;
-    //Filter prio
-    if (checkboxfilter.checked) {
-      if (filter == "FilterHigh") {
-        console.log(filter+ " 1")
-        event.filter((habit) => habit.Priority.name === "High");
-      } else if (filter == "FilterLow") {
-        console.log(filter + " 2");
-        event.filter((habit) => habit.Priority.name === "Low");
-        console.log(event);
-      }
-    }
     if (sortingStreakSelector === "highest") {
       event.sort((a, b) => b.streak - a.streak);
     } else if (sortingStreakSelector === "lowest") {
@@ -71,11 +61,30 @@ export function Habits(props) {
     <>
       <h1>Habits</h1>
       {/* those buttons are made to change the the value of streaks as user wish */}
-      <button onClick={() => setchanger("adduktion")}>+1</button>
+      <label>add remove or make streaks to zero </label>
+     <button id="adduktion" onClick={() => setchanger("adduktion")}>+1</button>
       <button onClick={() => setchanger("Zero")}>0</button>
       <button onClick={() => setchanger("subtraction")}>-1</button>
+      {/* Here can user sort Priority habits by high and low*/}
+      <p>{changer}</p>
 
+      <label for="sortingPrioritySelector">Priority rank</label>
+      <select
+      
+        name="sorting"
+        id="sortingPrioritySelector"
+        onChange={() => {
+          let rankPriorityHabits = [...habits];
+          handleRankingSystem(rankPriorityHabits);
+        }}>
+        <option value="none">none</option>
+        <option value="high">highest to lowest</option>
+
+        <option value="low">lowest to highest</option>
+      </select>
       {/* Here can user sort habits by high and low*/}
+      <label for="sortingStreakSelector">streak rank</label>
+
       <select
         name="sorting"
         id="sortingStreakSelector"
@@ -88,44 +97,62 @@ export function Habits(props) {
 
         <option value="lowest">lowest to highest</option>
       </select>
-      {/* Here can user sort Priority habits by high and low*/}
-      <select
-        name="sorting"
-        id="sortingPrioritySelector"
-        onChange={() => {
-          let rankPriorityHabits = [...habits];
-          handleRankingSystem(rankPriorityHabits);
-        }}>
-        <option value="none">none</option>
-        <option value="high">highest to lowest</option>
 
-        <option value="low">lowest to highest</option>
-      </select>
       <select
         name=""
         id="filter"
         onChange={() => {
-          let rankPriorityHabits = [...habits];
-          handleRankingSystem(rankPriorityHabits);
+          let rankStreakHabits = [...habits];
+          handleRankingSystem(rankStreakHabits);
         }}>
-        <option value="FilterHigh">High</option>
-        <option value="FilterLow">Low</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+
+        <option value="Low">Low</option>
       </select>
       <input
         type="checkbox"
         id="checkboxfilter"
         onChange={() => {
-          let rankPriorityHabits = [...habits];
-          handleRankingSystem(rankPriorityHabits);
+          let rankStreakHabits = [...habits];
+          handleRankingSystem(rankStreakHabits);
+          setIsCheckboxChecked(!isCheckboxChecked);
         }}
       />
-      <p>{changer}</p>
+   
 
       <NewHabits
-        habits={habits}
         updatehabit={updatehabit}
         addhabits={addhabits}
+        isCheckboxChecked={isCheckboxChecked}
       />
+      <div className="Container">
+        {habits && isCheckboxChecked
+          ? habits
+              .filter((filteredItem) => {
+                // Add your filtering condition here
+                return (
+                  filteredItem.Priority.name ===
+                  document.getElementById("filter").value
+                );
+              })
+              .map((filteredItem, index) => (
+
+                <div key={index} className="item" onClick={() => addOneToStreak(index)}>
+                 
+                  <p>Name: {filteredItem && filteredItem.title}</p>
+                  <p>Streaks: {filteredItem && filteredItem.streak}</p>
+                  <p>Priority: {filteredItem && filteredItem.Priority.name}</p>
+                </div>
+              ))
+          : habits.map((filteredItem, index) => (
+              <div key={index} className="item" onClick={() => addOneToStreak(index)}>
+                <p>Habits: {filteredItem && filteredItem.title}</p>
+                <p>Streaks: {filteredItem && filteredItem.streak}</p>
+                <p>Priority: {filteredItem && filteredItem.Priority.name}</p>
+              </div>
+            ))}
+      </div>
     </>
   );
 }

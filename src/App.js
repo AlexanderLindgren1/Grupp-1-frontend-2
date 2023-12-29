@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import './components/Habits.css';
+
 import './components/Tasks';
 import { NewHabits } from './components/NewHabits';
 

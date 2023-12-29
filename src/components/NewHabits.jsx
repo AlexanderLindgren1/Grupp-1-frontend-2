@@ -1,11 +1,9 @@
 import { useState } from "react";
-
+import './Habits.css';
 export function NewHabits(props) {
-  let [moveData, setMoveData] = useState([{ name: "High", number: 3 }]);
 
-  let addOneToStreak = (index) => {
-    props.updatehabit(index);
-  };
+
+
 
   return (
     <div>
@@ -20,6 +18,9 @@ export function NewHabits(props) {
 
       <button
         onClick={() => {
+          if (props.isCheckboxChecked) {
+            alert("You can´t use filter same time as adding habit!")
+          }
           let inputhabit = document.getElementById("habit").value;
           let inputstreaks = parseInt(
             document.getElementById("startstreaks").value
@@ -32,7 +33,6 @@ export function NewHabits(props) {
             let numberObject;
             if (x === "High") {
               numberObject = { name: x, number: 3 };
-          
             } else if (x === "Medium") {
               numberObject = { name: x, number: 2 };
             } else if (x === "Low") {
@@ -57,23 +57,7 @@ export function NewHabits(props) {
         }}>
         add habit
       </button>
-      <div className="Container">
-        {props.habits &&
-          props.habits.map((habit, index) => {
-           
-            return (
-              <div
-                className="item"
-                key={index}
-                id={index}
-                onClick={() => addOneToStreak(index)}>
-                <p>{habit.title}</p>
-                <p>Streaks: {habit.streak}</p>
-                <p> prioritized: {habit.Priority.name}</p>
-              </div>
-            );
-          })}
-      </div>
+     
     </div>
   );
 }
