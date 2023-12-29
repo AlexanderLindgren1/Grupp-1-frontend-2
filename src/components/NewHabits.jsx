@@ -16,7 +16,7 @@ export function NewHabits(props) {
         <option value="Low">Low</option>
       </select>
 
-      <button
+      <button>
         onClick={() => {
           if (props.isCheckboxChecked) {
             alert("You can´t use filter same time as adding habit!")
@@ -48,7 +48,7 @@ export function NewHabits(props) {
               Priority: addNumberOnProtize(prioritizeHabit),
             };
 
-<<<<<<< HEAD
+<<< HEAD
             
 
         }}>add habit</button>
