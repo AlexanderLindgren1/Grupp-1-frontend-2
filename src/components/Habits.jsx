@@ -10,6 +10,8 @@ export function Habits(props) {
     { Title: "Lama", streak: 8 },
   ]);
 
+  
+
   function addhabits(objects) {
     let upppdatedHabits = [...habits];
     console.log(upppdatedHabits);

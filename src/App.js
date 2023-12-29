@@ -8,6 +8,7 @@ import Home from './components/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Habits } from './components/Habits';
 import {Tasks} from './components/Tasks';
+import Friends from './components/Friends';
 function App() {
   return (
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/Habits' element={<Habits />} />
         <Route path ='/Tasks' element={<Tasks />} />
+        <Route path ='/Friends' element={<Friends />} />
       </Routes>    
 
     </div>

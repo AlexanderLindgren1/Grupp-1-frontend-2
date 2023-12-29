@@ -47,7 +47,7 @@ export function NewHabits(props) {
                     <div className="procolactor"></div>
                    
 
-                    <select  id={"Prioritet "+ index} onChange={()=>props.rankingHighToLow()}> 
+                    <select  id={"Prioritet "+ index} onChange={()=>props.rankingHighToLow}> 
                         <option value={"heigest" }>heigest</option>
                         <option value={"medium" } >medium</option>
                         <option value={"low" } >low</option>
